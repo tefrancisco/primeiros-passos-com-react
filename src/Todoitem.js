@@ -5,6 +5,13 @@ import "./App.css";
 
 export default class Todoitem extends React.Component {
   render() {
+    // Simplified destructuring of the props object
+    let {title, description, completed} = this.props;
+    // Designando as condições para as variáveis e melhorando a leitura do código
+    let descriptionText = (!description) ? "default text" : description
+    let completedText = (completed) ? "Completed" : "Not Completed"
+    let completedClass = (completed) ? "btn btn-success" : "btn btn-danger"
+
     return (
 
       <div className="todo-item p-3 mb-5 d-flex justify-content-between rounded">
@@ -12,14 +19,14 @@ export default class Todoitem extends React.Component {
         <div>
           {/*To use js inside xml we put the code into {}*/}
           {/*Passing data to the components by using the props (properties) that are specified in every component we create in App*/}
-          <h5>{this.props.title}</h5>
+          <h5>{title}</h5>
           {/*Using ternary operator*/}
           <p>
-            {!this.props.description ? "default text" : this.props.description}
+            {descriptionText}
           </p>
         </div>
         
-        <button className="btn btn-success">{(this.props.completed === true) ? 'Completed' : 'Not completed'}</button>
+        <button className={completedClass}>{completedText}</button>
       </div>
     );
   }
